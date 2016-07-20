@@ -1,0 +1,51 @@
+@import 'variables';
+
+body {
+  background: $blue !important;
+}
+.navBar {
+  background: $dark !important;
+}
+
+.navLogo {
+  height: 60px;
+}
+
+.sideNav {
+  background: $dark !important;
+  padding-top: 8px;
+  * {
+    margin-bottom: 8px;
+  }
+}
+
+.menuItem {
+  &:hover {
+    * {
+      color: white !important;
+    }
+  }
+}
+
+.navTabs {
+  height: 65px;
+  background: $blue !important;
+  color: $dark !important;
+  &:hover {
+    color: white !important;
+  }
+  * {
+    margin-right: 8px !important;
+    padding-left: 8px !important;
+  }
+}
+
+#resumeTab {
+  * {
+    padding-top: 4px !important;
+  }
+}
+
+.drawerAnchor {
+  text-decoration: none !important;
+}
