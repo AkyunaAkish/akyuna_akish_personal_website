@@ -38,7 +38,8 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './dist'
+    contentBase: './dist',
+    port: 5555
   }
 }
 
