@@ -88,24 +88,35 @@
   margin-bottom: 10px;
   margin-right: 10px;
   * {
-    background: white;
-    color: $dark;
+    background: $blue;
+    color: white !important;
   }
   &:hover {
     * {
-      color: $blue !important;
+      color: white !important;
+    }
+    .socialButtonIcon {
+      &::before {
+        color: white !important;
+      }
     }
   }
 }
 
 #phoneButton {
-  &:hover {
-    * {
-      color: $dark !important;
-    }
-  }
-
   * {
     cursor: default !important;
+  }
+}
+
+.buttonIcon {
+  &::before {
+    color: $blue !important;
+  }
+}
+
+.socialButtonIcon {
+  &::before {
+    color: $dark !important;
   }
 }

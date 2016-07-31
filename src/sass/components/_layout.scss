@@ -30,10 +30,10 @@ body {
 
 .navTabs {
   height: 65px;
-  background: white !important;
+  background: $blue !important;
   color: $dark !important;
   &:hover {
-    color: $blue !important;
+    color: white !important;
   }
   * {
     margin-right: 8px !important;

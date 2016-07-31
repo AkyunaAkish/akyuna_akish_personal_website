@@ -7,7 +7,6 @@ import { Paper, TextField, RaisedButton, FontIcon, Snackbar } from 'material-ui'
 class Contact extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       snackBarOpen: false
     }
@@ -15,21 +14,21 @@ class Contact extends Component {
 
   onSubmit(formData) {
     this.props.sendEmail(formData)
-    .then(() => {
-      this.setState({
-        snackBarOpen: true
-      })
-      console.log('THISPROPS', this.props);
-      this.props.fields.name.value = ''
-      this.props.fields.email.value = ''
-      this.props.fields.message.value = ''
+    .then((res) => {
+      if(res.error) {
+        alert('Message Could Not Be Sent', err)
+      } else {
+        this.setState({
+          snackBarOpen: true
+        })
+      }
     })
     .catch((err) => {
-      alert('Message Not Send Successfully', err)
+      alert('Message Could Not Be Sent', err)
     })
   }
 
-  handleSnackBarClose = () => {
+  handleSnackBarClose() {
     this.setState({
       snackBarOpen: false
     })
@@ -98,7 +97,7 @@ class Contact extends Component {
           open={this.state.snackBarOpen}
           message="Message Sent Successfully"
           autoHideDuration={6000}
-          onRequestClose={this.handleSnackBarClose}
+          onRequestClose={this.handleSnackBarClose.bind(this)}
           />
       </div>
     )

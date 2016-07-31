@@ -132,34 +132,34 @@ class Portfolio extends Component {
               href='https://github.com/akyunaakish'
               className='socialMediaButton'
               target='_blank'
-              icon={<FontIcon className="fa fa-github" />}
+              icon={<FontIcon className="fa fa-github socialButtonIcon" />}
               />
             <RaisedButton
               href='https://linkedin.com/in/akyunaakish'
               className='socialMediaButton'
               target='_blank'
-              icon={<FontIcon className="fa fa-linkedin" />}
+              icon={<FontIcon className="fa fa-linkedin socialButtonIcon" />}
               />
             <RaisedButton
               href='akyunaakish@gmail.com'
               label='akyunaakish@gmail.com'
               className='socialMediaButton'
               target='_blank'
-              icon={<FontIcon className="fa fa-envelope" />}
+              icon={<FontIcon className="fa fa-envelope socialButtonIcon" />}
               />
             <RaisedButton
               href='#'
               label='760-585-6334'
               className='socialMediaButton'
               id='phoneButton'
-              icon={<FontIcon className="fa fa-phone" />}
+              icon={<FontIcon className="fa fa-phone socialButtonIcon" />}
               />
           </Paper>
         </div>
 
 
         <Paper className='paperHeader' style={paperStyle} zDepth={5}>
-          <h1><i className='devicons devicons-atom'></i>Skills</h1>
+          <h1><i className='devicons devicons-atom buttonIcon'></i>Skills</h1>
         </Paper>
 
         <div style={chipStyle.wrapper} className="skillContainer">
@@ -297,7 +297,7 @@ class Portfolio extends Component {
 
 
         <Paper className='paperHeader' style={paperStyle} zDepth={5}>
-          <h1><i className='devicons devicons-terminal'></i>Projects</h1>
+          <h1><i className='devicons devicons-terminal buttonIcon'></i>Projects</h1>
         </Paper>
 
         <div style={styles.root}>

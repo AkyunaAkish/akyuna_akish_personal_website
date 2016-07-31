@@ -19,8 +19,7 @@ import './sass/style.scss'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 injectTapEventPlugin()
-
-const createStoreWithMiddleware = applyMiddleware(logger(), promise)(createStore)
+const createStoreWithMiddleware = !process.env.NODE_ENV  ? applyMiddleware(promise, logger())(createStore) : applyMiddleware(promise)(createStore)
 
 ReactDOM.render(
   <MuiThemeProvider>

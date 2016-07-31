@@ -20,11 +20,6 @@ class Layout extends Component {
       this.state.initialTab = 1
       break;
     }
-
-    browserHistory.listen((location) => {
-      this.maintainTabs()
-    })
-
   }
 
   static contextTypes = {
@@ -53,7 +48,6 @@ class Layout extends Component {
   }
 
   componentWillMount() {
-    this.maintainTabs()
     this.checkDimensions($(window).width())
     window.addEventListener('resize', () => {
       this.checkDimensions($(window).width())
@@ -88,7 +82,6 @@ class Layout extends Component {
     }, 1)
   }
 
-
   render() {
     const buttonStyle = {
       color: 'rgb(255,255,255)'
@@ -103,7 +96,7 @@ class Layout extends Component {
       textAlign: 'center'
     }
     const underLineStyle = {
-      backgroundColor: 'rgb(34,34,34)'
+      backgroundColor: 'white'
     }
     return (
       <div>
