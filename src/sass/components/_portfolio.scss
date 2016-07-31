@@ -14,8 +14,98 @@
   img {
     width: 100%;
   }
+  .projectGithub {
+    color: $blue;
+    font-size: 1.4em;
+    &:hover {
+      color: white;
+    }
+  }
+
+  .tileLiveLink {
+    color: $blue;
+    font-size: 1.4em;
+    &:hover {
+      color: white;
+    }
+  }
+
+  .projectButton {
+    * {
+      color: white !important;
+      background: $dark;
+      &:hover {
+        color: $blue !important;
+      }
+    }
+  }
+
+  .gridTitle {
+    color: white;
+    font-size: 1.2em;
+
+    &:hover {
+      color: $blue;
+      text-decoration: underline;
+    }
+  }
+
 }
 
-.devicons-terminal {
+.devicons {
   color: white;
+  font-size: 1.2em;
+}
+
+.skillContainer {
+  width: 75%;
+  margin: 0 auto;
+
+  * {
+    background-color: $dark;
+    border-radius: 10%;
+  }
+
+}
+
+.paperHeader {
+  width: 75%;
+  margin: 0 auto;
+  h1 {
+    color: white !important;
+  }
+}
+
+.mainPhotoDiv {
+  padding-top: 10px;
+  img {
+    border-radius: 5%;
+  }
+}
+
+.socialMediaButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  * {
+    background: white;
+    color: $dark;
+  }
+  &:hover {
+    * {
+      color: $blue !important;
+    }
+  }
+}
+
+#phoneButton {
+  &:hover {
+    * {
+      color: $dark !important;
+    }
+  }
+
+  * {
+    cursor: default !important;
+  }
 }

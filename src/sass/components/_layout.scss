@@ -23,17 +23,17 @@ body {
 .menuItem {
   &:hover {
     * {
-      color: white !important;
+      color: $blue !important;
     }
   }
 }
 
 .navTabs {
   height: 65px;
-  background: $blue !important;
+  background: white !important;
   color: $dark !important;
   &:hover {
-    color: white !important;
+    color: $blue !important;
   }
   * {
     margin-right: 8px !important;

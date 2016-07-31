@@ -12,22 +12,19 @@ class Layout extends Component {
       showMenuButton: false,
       initialTab: 0
     }
-    console.log('TEST', this.props.location.pathname);
     switch (this.props.location.pathname) {
       case '/':
       this.state.initialTab = 0
       break;
-      case '/skills':
+      case '/contact':
       this.state.initialTab = 1
       break;
-      case '/contact':
-      console.log('in contact case');
-      this.state.initialTab = 2
-      break;
-      case '/blogs':
-      this.state.initialTab = 3
-      break;
     }
+
+    browserHistory.listen((location) => {
+      this.maintainTabs()
+    })
+
   }
 
   static contextTypes = {
@@ -41,7 +38,7 @@ class Layout extends Component {
   }
 
   checkDimensions(dimensions) {
-    if (dimensions <= 700) {
+    if (dimensions <= 550) {
       this.setState({
         showTabs: false,
         showMenuButton: true
@@ -56,6 +53,7 @@ class Layout extends Component {
   }
 
   componentWillMount() {
+    this.maintainTabs()
     this.checkDimensions($(window).width())
     window.addEventListener('resize', () => {
       this.checkDimensions($(window).width())
@@ -75,22 +73,10 @@ class Layout extends Component {
           initialTab: 0
         })
         break;
-        case '/skills':
-        this.setState({
-          showTabs: false,
-          initialTab: 1
-        })
-        break;
         case '/contact':
         this.setState({
           showTabs: false,
-          initialTab: 2
-        })
-        break;
-        case '/blogs':
-        this.setState({
-          showTabs: false,
-          initialTab: 3
+          initialTab: 1
         })
         break;
       }
@@ -109,7 +95,7 @@ class Layout extends Component {
     }
     const menuItemStyle = {
       cursor: 'pointer',
-      backgroundColor: 'rgb(125,213,248)',
+      backgroundColor: 'white',
       textAlign: 'center'
     }
     const paperStyle = {
@@ -117,10 +103,8 @@ class Layout extends Component {
       textAlign: 'center'
     }
     const underLineStyle = {
-      backgroundColor: 'white'
+      backgroundColor: 'rgb(34,34,34)'
     }
-
-    // onActive={() => window.location.href = '/'}
     return (
       <div>
         <AppBar
@@ -139,19 +123,9 @@ class Layout extends Component {
                 onClick={() => this.switchComponent('/')}
                 />
               <Tab
-                label='SKILLS'
-                className='navTabs'
-                onClick={() => this.switchComponent('/skills')}
-                />
-              <Tab
                 label='CONTACT'
                 className='navTabs'
                 onClick={() => this.switchComponent('/contact')}
-                />
-              <Tab
-                label='BLOGS'
-                className='navTabs'
-                onClick={() => this.switchComponent('/blogs')}
                 />
               <Tab
                 label='RESUME'
@@ -185,20 +159,8 @@ class Layout extends Component {
           <MenuItem
             style={menuItemStyle}
             className='menuItem'
-            onClick={() => this.switchComponent('/skills')}>
-            SKILLS
-          </MenuItem>
-          <MenuItem
-            style={menuItemStyle}
-            className='menuItem'
             onClick={() => this.switchComponent('/contact')}>
             CONTACT
-          </MenuItem>
-          <MenuItem
-            style={menuItemStyle}
-            className='menuItem'
-            onClick={() => this.switchComponent('/blogs')}>
-            BLOGS
           </MenuItem>
           <a href='/Akyuna_Akish_Resume.pdf' target='_blank' className="drawerAnchor">
             <MenuItem

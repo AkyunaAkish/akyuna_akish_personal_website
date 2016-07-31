@@ -1,0 +1,42 @@
+@import 'variables';
+
+.paperForm {
+  background: $dark !important;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 20%;
+  transform: translateY(20%);
+  -webkit-transform: translateY(20%);
+  width: 75%;
+  color: white !important;
+  padding: 10px;
+
+  .contactInput {
+    max-width: 100%;
+  }
+}
+
+.fa-pencil, .sendMessageEnvelope {
+  color: $blue !important;
+}
+
+.sendMessageButton {
+  * {
+    background: $blue !important;
+    color: white !important;
+  }
+  .sendMessageEnvelope {
+    color: $dark !important;
+  }
+
+  &:hover {
+    * {
+      background: white !important;
+      color: $dark !important;
+    }
+    .sendMessageEnvelope {
+      color: $blue !important;
+    }
+  }
+}
