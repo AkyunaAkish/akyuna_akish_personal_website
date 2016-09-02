@@ -117,7 +117,14 @@ class Portfolio extends Component {
       wrapper: {
         display: 'flex',
         flexWrap: 'wrap',
-      },
+      }
+    }
+
+    const buttonStyle = {
+      margin: 12
+    }
+    const labelStyle = {
+      color: 'lime'
     }
 
 
@@ -132,19 +139,24 @@ class Portfolio extends Component {
               href='https://github.com/akyunaakish'
               className='socialMediaButton'
               target='_blank'
+              style={buttonStyle}
               icon={<FontIcon className="fa fa-github socialButtonIcon" />}
               />
             <RaisedButton
               href='https://linkedin.com/in/akyunaakish'
               className='socialMediaButton'
               target='_blank'
+              style={buttonStyle}
               icon={<FontIcon className="fa fa-linkedin socialButtonIcon" />}
               />
             <RaisedButton
               href='akyunaakish@gmail.com'
               label='akyunaakish@gmail.com'
               className='socialMediaButton'
+              id='emailButton'
               target='_blank'
+              labelStyle={labelStyle}
+              style={buttonStyle}
               icon={<FontIcon className="fa fa-envelope socialButtonIcon" />}
               />
             <RaisedButton
@@ -152,6 +164,7 @@ class Portfolio extends Component {
               label='760-585-6334'
               className='socialMediaButton'
               id='phoneButton'
+              style={buttonStyle}
               icon={<FontIcon className="fa fa-phone socialButtonIcon" />}
               />
           </Paper>
