@@ -3,24 +3,16 @@ import { sendEmail } from '../actions/index'
 import { reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 import { Paper, TextField, RaisedButton, FontIcon, Snackbar } from 'material-ui'
+import * as actions from '../actions'
 
 class Contact extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      snackBarOpen: false
-    }
-  }
-
   onSubmit(formData) {
     this.props.sendEmail(formData)
     .then((res) => {
       if(res.error) {
         alert('Message Could Not Be Sent', err)
       } else {
-        this.setState({
-          snackBarOpen: true
-        })
+        this.props.toggleSnackBar(true)
       }
     })
     .catch((err) => {
@@ -29,9 +21,7 @@ class Contact extends Component {
   }
 
   handleSnackBarClose() {
-    this.setState({
-      snackBarOpen: false
-    })
+    this.props.toggleSnackBar(false)
   }
 
   render() {
@@ -94,7 +84,7 @@ class Contact extends Component {
         </Paper>
 
         <Snackbar
-          open={this.state.snackBarOpen}
+          open={this.props.showSnackBar}
           message="Message Sent Successfully"
           autoHideDuration={6000}
           onRequestClose={this.handleSnackBarClose.bind(this)}
@@ -114,8 +104,14 @@ function validate(values) {
   return errors
 }
 
+function mapStateToProps(state) {
+  return {
+    showSnackBar: state.material_ui.showSnackBar
+  }
+}
+
 export default reduxForm({
   form: 'Contact',
   fields: ['name', 'email', 'message'],
   validate: validate
-}, null, { sendEmail })(Contact)
+}, mapStateToProps, actions)(Contact)

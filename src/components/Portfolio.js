@@ -6,31 +6,18 @@ import { RaisedButton, FontIcon } from 'material-ui'
 import Subheader from 'material-ui/Subheader'
 import Paper from 'material-ui/Paper'
 import Chip from 'material-ui/Chip'
-
-
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 class Portfolio extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      projectCols: 3
-    }
-  }
-
   checkDimensions(dimensions) {
     if (dimensions <= 1100 && dimensions >= 750) {
-      this.setState({
-        projectCols: 2
-      })
+      this.props.setProjectCols(2)
     } else if(dimensions > 1100){
-      this.setState({
-        projectCols: 3
-      })
+      this.props.setProjectCols(3)
     } else if(dimensions < 750) {
-      this.setState({
-        projectCols: 1
-      })
+      this.props.setProjectCols(1)
     }
   }
 
@@ -127,221 +114,224 @@ class Portfolio extends Component {
       color: 'lime'
     }
 
-
-
-    return (
-      <div className="text-center">
-        <div className='mainPhotoDiv'>
-          <img src='/images/Akyuna_Akish.jpg'/>
-          <Paper className='paperHeader' zDepth={5}>
-            <h1>Full Stack Web Developer - Boulder, CO</h1>
-            <RaisedButton
-              href='https://github.com/akyunaakish'
-              className='socialMediaButton'
-              target='_blank'
-              style={buttonStyle}
-              icon={<FontIcon className="fa fa-github socialButtonIcon" />}
-              />
-            <RaisedButton
-              href='https://linkedin.com/in/akyunaakish'
-              className='socialMediaButton'
-              target='_blank'
-              style={buttonStyle}
-              icon={<FontIcon className="fa fa-linkedin socialButtonIcon" />}
-              />
-            <RaisedButton
-              href='akyunaakish@gmail.com'
-              label='akyunaakish@gmail.com'
-              className='socialMediaButton'
-              id='emailButton'
-              target='_blank'
-              labelStyle={labelStyle}
-              style={buttonStyle}
-              icon={<FontIcon className="fa fa-envelope socialButtonIcon" />}
-              />
-            <RaisedButton
-              href='#'
-              label='760-585-6334'
-              className='socialMediaButton'
-              id='phoneButton'
-              style={buttonStyle}
-              icon={<FontIcon className="fa fa-phone socialButtonIcon" />}
-              />
-          </Paper>
-        </div>
-
-
-        <Paper className='paperHeader' style={paperStyle} zDepth={5}>
-          <h1><i className='devicons devicons-atom buttonIcon'></i>Skills</h1>
+  return (
+    <div className="text-center">
+      <div className='mainPhotoDiv'>
+        <img src='/images/Akyuna_Akish.jpg'/>
+        <Paper className='paperHeader' zDepth={5}>
+          <h1>Full Stack Web Developer - Boulder, CO</h1>
+          <RaisedButton
+            href='https://github.com/akyunaakish'
+            className='socialMediaButton'
+            target='_blank'
+            style={buttonStyle}
+            icon={<FontIcon className="fa fa-github socialButtonIcon" />}
+            />
+          <RaisedButton
+            href='https://linkedin.com/in/akyunaakish'
+            className='socialMediaButton'
+            target='_blank'
+            style={buttonStyle}
+            icon={<FontIcon className="fa fa-linkedin socialButtonIcon" />}
+            />
+          <RaisedButton
+            href='mailto:akyunaakish@gmail.com'
+            label='akyunaakish@gmail.com'
+            className='socialMediaButton'
+            id='emailButton'
+            labelStyle={labelStyle}
+            style={buttonStyle}
+            icon={<FontIcon className="fa fa-envelope socialButtonIcon" />}
+            />
+          <RaisedButton
+            href='#'
+            label='760-585-6334'
+            className='socialMediaButton'
+            id='phoneButton'
+            style={buttonStyle}
+            icon={<FontIcon className="fa fa-phone socialButtonIcon" />}
+            />
         </Paper>
+      </div>
 
-        <div style={chipStyle.wrapper} className="skillContainer">
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-html5'> HTML</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-css3'> CSS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-sass'> SASS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-bootstrap'> Bootstrap</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-javascript_badge'> JavaScript</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-jquery'> jQuery</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> ReactJS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> Redux</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-angular'> AngularJS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> Webpack</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-gulp'> GulpJS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-nodejs_small'> NodeJS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> ExpressJS</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> Socket.io</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-postgresql'> PostgreSQL</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-mongodb'> MongoDB</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> API Development</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-firebase'> Firebase</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-git'> Git/Github</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-npm'> NPM</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-bower'> Bower</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-terminal'> Terminal</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> TDD</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> Mocha/Chai/Jasmine</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-atom'> Deployment</p>
-          </Chip>
-          <Chip
-            style={chipStyle.chip}
-            >
-            <p className='devicons devicons-heroku'> Heroku</p>
-          </Chip>
+
+      <Paper className='paperHeader' style={paperStyle} zDepth={5}>
+        <h1><i className='devicons devicons-atom buttonIcon'></i>Skills</h1>
+      </Paper>
+
+      <div style={chipStyle.wrapper} className="skillContainer">
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-html5'> HTML</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-css3'> CSS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-sass'> SASS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-bootstrap'> Bootstrap</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-javascript_badge'> JavaScript</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-jquery'> jQuery</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> ReactJS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> Redux</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-angular'> AngularJS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> Webpack</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-gulp'> GulpJS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-nodejs_small'> NodeJS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> ExpressJS</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> Socket.io</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-postgresql'> PostgreSQL</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-mongodb'> MongoDB</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> API Development</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-firebase'> Firebase</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-git'> Git/Github</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-npm'> NPM</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-bower'> Bower</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-terminal'> Terminal</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> TDD</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> Mocha/Chai/Jasmine</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-atom'> Deployment</p>
+        </Chip>
+        <Chip
+          style={chipStyle.chip}
+          >
+          <p className='devicons devicons-heroku'> Heroku</p>
+        </Chip>
+      </div>
+
+
+      <Paper className='paperHeader' style={paperStyle} zDepth={5}>
+        <h1><i className='devicons devicons-terminal buttonIcon'></i>Projects</h1>
+      </Paper>
+
+      <div style={styles.root}>
+        <GridList
+          style={styles.gridList}
+          cols={this.props.projectCols}
+          >
+        {projectData.map((tile) => (
+          <GridTile
+            key={tile.img}
+            title={<a href={tile.url} target='_blank' className='gridTitle'>{tile.title}</a>}
+            subtitle={
+              <RaisedButton
+                label="GitHub Repo"
+                href={tile.github}
+                className='projectButton'
+                target='_blank'
+                icon={<FontIcon className="fa fa-github" />}
+                />}
+                className='projectGridTitle'
+                >
+                <a href={tile.url} target='_blank'>
+                  <img src={tile.img}/>
+                </a>
+              </GridTile>
+            ))}
+          </GridList>
         </div>
+      </div>
+    )
+  }
+}
 
+function mapStateToProps(state) {
+  return {
+    projectCols: state.portfolio.projectCols
+  }
+}
 
-        <Paper className='paperHeader' style={paperStyle} zDepth={5}>
-          <h1><i className='devicons devicons-terminal buttonIcon'></i>Projects</h1>
-        </Paper>
-
-        <div style={styles.root}>
-          <GridList
-            style={styles.gridList}
-            cols={this.state.projectCols}
-            >
-            {projectData.map((tile) => (
-              <GridTile
-                key={tile.img}
-                title={<a href={tile.url} target='_blank' className='gridTitle'>{tile.title}</a>}
-                subtitle={
-                  <RaisedButton
-                    label="GitHub Repo"
-                    href={tile.github}
-                    className='projectButton'
-                    target='_blank'
-                    icon={<FontIcon className="fa fa-github" />}
-                    />}
-                    className='projectGridTitle'
-                    >
-                    <a href={tile.url} target='_blank'>
-                      <img src={tile.img}/>
-                    </a>
-                  </GridTile>
-                ))}
-              </GridList>
-            </div>
-          </div>
-        )
-      }
-    }
-
-    export default Portfolio
+export default connect(mapStateToProps, actions)(Portfolio)

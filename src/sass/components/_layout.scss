@@ -1,52 +1,135 @@
+//@import 'variables';
+//
+//body {
+//background: rgba(34,34,34, .8) !important;
+//}
+//
+//.navBar {
+//  background: $dark !important;
+//}
+//
+//.navLogo {
+//  height: 60px;
+//}
+//
+//.sideNav {
+//  background: $dark !important;
+//  padding-top: 8px;
+//  * {
+//    margin-bottom: 8px;
+//  }
+//}
+//
+//.menuItem {
+//  &:hover {
+//    * {
+//      color: $blue !important;
+//    }
+//  }
+//}
+//
+//.navTabs {
+//  height: 65px;
+//  background: $blue !important;
+//  color: $dark !important;
+//  &:hover {
+//    color: white !important;
+//  }
+//  * {
+//    margin-right: 8px !important;
+//    padding-left: 8px !important;
+//  }
+//}
+//
+
+//
+
+
 @import 'variables';
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
+  padding-top: 70px;
   background: rgba(34,34,34, .8) !important;
+}
+
+img, embed, object, video {
+  max-width: 100%;
+  height: auto;
 }
 
 .navBar {
   background: $dark !important;
-}
-
-.navLogo {
-  height: 60px;
-}
-
-.sideNav {
-  background: $dark !important;
-  padding-top: 8px;
-  * {
-    margin-bottom: 8px;
+  position: fixed !important;
+  top: 0 !important;
+  overflowY: hidden !important;
+  .navLogo {
+    height: 60px;
+    vertical-align: middle;
   }
-}
+  span {
+    div {
+      background: $dark !important;
+    }
+  }
+  svg {
+    fill: $blue !important;
+  }
 
-.menuItem {
-  &:hover {
+  .navTabs {
+    height: 65px;
+    background: $blue !important;
+    color: $dark !important;
+    &:hover {
+      color: white !important;
+    }
     * {
-      color: $blue !important;
+      margin-right: 12px !important;
+      padding-left: 12px !important;
+    }
+    span {
+      div {
+        background: $dark !important;
+      }
     }
   }
 }
 
-.navTabs {
-  height: 65px;
-  background: $blue !important;
-  color: $dark !important;
-  &:hover {
-    color: white !important;
-  }
-  * {
-    margin-right: 8px !important;
-    padding-left: 8px !important;
+.menuButton {
+  path {
+    background: $blue !important;
+    color: $blue !important;
   }
 }
 
-#resumeTab {
-  * {
-    padding-top: 4px !important;
+.sideNav {
+  background: $dark !important;
+  .sideNavItem {
+    text-align: center;
+    border-bottom: 2px solid $dark !important;
+    background: $blue !important;
+    color: $dark !important;
+    span {
+      div {
+        background: $dark !important;
+      }
+    }
+    &:hover {
+      color: white !important;
+    }
   }
 }
 
 .drawerAnchor {
   text-decoration: none !important;
+}
+
+#resumeTab {
+  * {
+    padding-top: 5px !important;
+  }
 }

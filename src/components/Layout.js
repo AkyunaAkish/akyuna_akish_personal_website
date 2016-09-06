@@ -1,24 +1,25 @@
 import React, { Component, PropTypes } from 'react'
-import { Link, browserHistory, Router }  from 'react-router'
-import { AppBar, Drawer, MenuItem } from 'material-ui'
-import { Tabs, Tab } from 'material-ui/Tabs'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+import {
+  AppBar,
+  Tabs,
+  Tab,
+  Drawer,
+  MenuItem
+} from 'material-ui'
 
 class Layout extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      drawerOpen: false,
-      showTabs: true,
-      showMenuButton: false,
-      initialTab: 0
-    }
+
     switch (this.props.location.pathname) {
       case '/':
-      this.state.initialTab = 0
-      break;
+      this.props.setCurrentTab(0)
+      break
       case '/contact':
-      this.state.initialTab = 1
-      break;
+      this.props.setCurrentTab(1)
+      break
     }
   }
 
@@ -26,97 +27,91 @@ class Layout extends Component {
     router: PropTypes.object
   }
 
-  handleTouchTap() {
-    this.setState({
-      drawerOpen: !this.state.drawerOpen
-    })
-  }
-
   checkDimensions(dimensions) {
-    if (dimensions <= 550) {
-      this.setState({
-        showTabs: false,
-        showMenuButton: true
-      })
+    if (dimensions < 550) {
+      this.props.toggleTabs(false)
     } else {
-      this.setState({
-        showTabs: true,
-        showMenuButton: false,
-        drawerOpen: false
-      })
+      if (this.props.showSideNav) {
+        this.toggleSideNav()
+      }
+      switch (this.props.location.pathname) {
+        case '/':
+        this.props.setCurrentTab(0)
+        break
+        case '/contact':
+        this.props.setCurrentTab(1)
+        break
+      }
+      this.props.toggleTabs(true)
     }
   }
 
   componentWillMount() {
-    this.checkDimensions($(window).width())
+    this.checkDimensions(window.innerWidth)
     window.addEventListener('resize', () => {
-      this.checkDimensions($(window).width())
+      this.checkDimensions(window.innerWidth)
     })
+  }
+
+  toggleSideNav() {
+    this.props.toggleSideNav(!this.props.showSideNav)
   }
 
   switchComponent(link) {
     this.context.router.push(link)
+    if (this.props.showSideNav) {
+      this.toggleSideNav()
+    }
   }
 
-  maintainTabs() {
-    setTimeout(() => {
-      switch (this.props.location.pathname) {
-        case '/':
-        this.setState({
-          showTabs: false,
-          initialTab: 0
-        })
-        break;
-        case '/contact':
-        this.setState({
-          showTabs: false,
-          initialTab: 1
-        })
-        break;
-      }
-    }, 0)
-    setTimeout(() => {
-      this.setState({
-        showTabs: true
-      })
-    }, 1)
+  handleTabChange(tabValue) {
+    if (tabValue !== 12) {
+      this.props.setCurrentTab(tabValue)
+    } else {
+      setTimeout(() => {
+        this.props.toggleTabs(false)
+        this.props.setCurrentTab(this.props.currentTab)
+      }, 0)
+      setTimeout(() => {
+        this.props.toggleTabs(true)
+      }, 1)
+    }
   }
 
   render() {
-    const buttonStyle = {
-      color: 'rgb(255,255,255)'
+    const underLineStyle = {
+      backgroundColor: 'rgb(32,50,67)'
     }
     const menuItemStyle = {
       cursor: 'pointer',
       backgroundColor: 'white',
       textAlign: 'center'
     }
-    const paperStyle = {
-      background: 'rgb(125,213,248)',
-      textAlign: 'center'
-    }
-    const underLineStyle = {
-      backgroundColor: 'white'
-    }
+
     return (
       <div>
         <AppBar
           className='navBar'
-          title={<img src='images/akyunatransparent.png' className='navLogo'/>}
-          onLeftIconButtonTouchTap={this.handleTouchTap.bind(this)}
-          showMenuIconButton={this.state.showMenuButton}
-          children={this.state.showTabs ? [
+          title={this.props.showTabs ? <img src='images/akyunatransparent.png' className='navLogo'/> : null}
+          showMenuIconButton={!this.props.showTabs}
+          iconElementRight={!this.props.showTabs ? <img src='images/akyunatransparent.png' className='navLogo'/> : null}
+          onLeftIconButtonTouchTap={this.toggleSideNav.bind(this)}
+          children={this.props.showTabs ? [
             <Tabs
               key={1}
-              initialSelectedIndex={this.state.initialTab}
-              inkBarStyle={underLineStyle}>
+              inkBarStyle={underLineStyle}
+              value={this.props.currentTab}
+              onChange={this.handleTabChange.bind(this)}
+              >
               <Tab
                 label='PORTFOLIO'
+                value={0}
                 className='navTabs'
                 onClick={() => this.switchComponent('/')}
                 />
               <Tab
                 label='CONTACT'
+                value={1}
                 className='navTabs'
                 onClick={() => this.switchComponent('/contact')}
                 />
@@ -124,50 +119,62 @@ class Layout extends Component {
                 label='RESUME'
                 className='navTabs'
                 id='resumeTab'
+                value={12}
                 href='/Akyuna_Akish_Resume.pdf'
                 target='_blank'
-                onClick={() => this.maintainTabs()}
                 />
             </Tabs>
           ] : []}
           />
 
         <Drawer
-          open={this.state.drawerOpen}
-          openSecondary={true}
+          open={this.props.showSideNav}
+          docked={false}
+          onRequestChange={() => this.toggleSideNav()}
           containerClassName='sideNav'
           >
           <MenuItem
-            onClick={this.handleTouchTap.bind(this)}
             style={menuItemStyle}
-            className='menuItem'>
-            CLOSE
+            className='sideNavItem'
+            onClick={this.toggleSideNav.bind(this)}
+            id='closeNavItem'>
+            CLOSE MENU
           </MenuItem>
           <MenuItem
             style={menuItemStyle}
-            className='menuItem'
+            className='sideNavItem'
             onClick={() => this.switchComponent('/')}>
             PORTFOLIO
           </MenuItem>
           <MenuItem
             style={menuItemStyle}
-            className='menuItem'
+            className='sideNavItem'
             onClick={() => this.switchComponent('/contact')}>
             CONTACT
           </MenuItem>
           <a href='/Akyuna_Akish_Resume.pdf' target='_blank' className="drawerAnchor">
             <MenuItem
               style={menuItemStyle}
-              className='menuItem'
+              className='sideNavItem'
               >
               RESUME
             </MenuItem>
           </a>
         </Drawer>
+
         {this.props.children}
       </div>
     )
   }
 }
 
-export default Layout
+
+function mapStateToProps(state) {
+  return {
+    showTabs: state.material_ui.showTabs,
+    showSideNav: state.material_ui.showSideNav,
+    currentTab: state.material_ui.currentTab
+  }
+}
+
+export default connect(mapStateToProps, actions)(Layout)

@@ -1,0 +1,6 @@
+export const SEND_EMAIL = 'SEND_EMAIL'
+export const TOGGLE_TABS = 'TOGGLE_TABS'
+export const SET_CURRENT_TAB = 'SET_CURRENT_TAB'
+export const TOGGLE_SIDE_NAV = 'TOGGLE_SIDE_NAV'
+export const SET_PROJECT_COLS = 'SET_PROJECT_COLS'
+export const TOGGLE_SNACKBAR = 'TOGGLE_SNACKBAR'
