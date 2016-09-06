@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { HOST } from '../helpers/constants'
 
 import {
   TOGGLE_TABS,
@@ -10,7 +11,7 @@ import {
 } from './types'
 
 export function sendEmail(email) {
-  const request = axios.post(`http://localhost:3000/sendEmail`, email)
+  const request = axios.post(`${HOST}/sendEmail`, email)
 
   return {
     type: SEND_EMAIL,
