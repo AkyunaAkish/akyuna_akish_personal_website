@@ -8,6 +8,7 @@ import {
   Drawer,
   MenuItem
 } from 'material-ui'
+import { browserHistory } from 'react-router'
 
 class Layout extends Component {
   constructor(props) {
@@ -50,6 +51,16 @@ class Layout extends Component {
     this.checkDimensions(window.innerWidth)
     window.addEventListener('resize', () => {
       this.checkDimensions(window.innerWidth)
+    })
+    browserHistory.listen((location) => {
+      switch (location.pathname) {
+        case '/':
+        this.props.setCurrentTab(0)
+        break
+        case '/contact':
+        this.props.setCurrentTab(1)
+        break
+      }
     })
   }
 
