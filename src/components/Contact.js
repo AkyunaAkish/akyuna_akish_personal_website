@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
 import { sendEmail } from '../actions/index'
-import { reduxForm } from 'redux-form'
+import { reduxForm, reset } from 'redux-form'
 import { Link } from 'react-router'
 import { Paper, TextField, RaisedButton, FontIcon, Snackbar } from 'material-ui'
 import * as actions from '../actions'
+import { bindActionCreators } from 'redux'
+
 
 class Contact extends Component {
   onSubmit(formData) {
     this.props.sendEmail(formData)
     .then((res) => {
       if(res.error) {
-        alert('Message Could Not Be Sent', err)
+        this.props.toggleSnackBar(true, 'Message Could Not Be Sent', true)
       } else {
-        this.props.toggleSnackBar(true)
+        const { resetForm } = this.props
+        resetForm()
+        this.props.toggleSnackBar(true, 'Message Sent Successfully', false)
       }
     })
     .catch((err) => {
-      alert('Message Could Not Be Sent', err)
+      this.props.toggleSnackBar(true, 'Message Could Not Be Sent', true)
     })
   }
 
   handleSnackBarClose() {
-    this.props.toggleSnackBar(false)
+    this.props.toggleSnackBar(false, this.props.snackBarMessage, false)
   }
 
   render() {
@@ -85,11 +89,13 @@ class Contact extends Component {
 
         <Snackbar
           open={this.props.showSnackBar}
-          message="Message Sent Successfully"
+          message={this.props.snackBarMessage}
           autoHideDuration={6000}
           onRequestClose={this.handleSnackBarClose.bind(this)}
+          className={!this.props.snackBarError ? null : 'snackBarError'}
           />
       </div>
+
     )
   }
 }
@@ -106,7 +112,9 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    showSnackBar: state.material_ui.showSnackBar
+    showSnackBar: state.material_ui.showSnackBar,
+    snackBarMessage: state.material_ui.snackBarMessage,
+    snackBarError: state.material_ui.snackBarError
   }
 }
 

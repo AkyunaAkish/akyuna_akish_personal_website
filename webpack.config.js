@@ -52,6 +52,12 @@ if(!DEV){
       create_source_map: false
     })
   )
+} else {
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
+  )
 }
 
 module.exports = config

@@ -9,7 +9,9 @@ const initialState = {
   showTabs: true,
   showSideNav: false,
   currentTab: 0,
-  showSnackBar: false
+  showSnackBar: false,
+  snackBarMessage: 'Message Sent Successfully',
+  snackBarError: false
 }
 
 export default function(state = initialState, action) {
@@ -24,7 +26,12 @@ export default function(state = initialState, action) {
     return { ...state, currentTab: action.payload }
     break
     case TOGGLE_SNACKBAR:
-    return { ...state, showSnackBar: action.payload }
+    return {
+      ...state,
+      showSnackBar: action.payload.bool,
+      snackBarMessage: action.payload.message,
+      snackBarError: action.payload.error
+    }
     break
   }
   return { ...state }

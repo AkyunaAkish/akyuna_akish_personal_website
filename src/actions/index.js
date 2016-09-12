@@ -40,10 +40,14 @@ export function toggleSideNav(bool) {
   }
 }
 
-export function toggleSnackBar(bool) {
+export function toggleSnackBar(bool, message, error) {
   return {
     type: TOGGLE_SNACKBAR,
-    payload: bool
+    payload: {
+      bool: bool,
+      message: message,
+      error: error
+    }
   }
 }
 
