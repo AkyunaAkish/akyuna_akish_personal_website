@@ -60,12 +60,6 @@ class Portfolio extends Component {
         github: 'https://github.com/AkyunaAkish/react-redux-blog-application',
       },
       {
-        img: '/images/react_redux_weather.png',
-        title: 'ReactJS Redux Weather Search',
-        url: 'http://react-redux-weather.s3-website-us-west-2.amazonaws.com/',
-        github: 'https://github.com/AkyunaAkish/react-redux-weather',
-      },
-      {
         img: '/images/react_image_search.png',
         title: 'ReactJS Image Search',
         url: 'https://react-redux-image-search.firebaseapp.com/',
